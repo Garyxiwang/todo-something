@@ -2,13 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 
-// 假设这里有一个用于显示加载状态的组件，你可以根据实际情况自行实现
-// import LoadingSpinner from './LoadingSpinner';
-// declare global {
-//   interface Window {
-//     ethereum: any;
-//   }
-// }
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
 const ConnectWallet = () => {
   const [walletAddress, setWalletAddress] = useState("");
   const [isWalletConnected, setIsWalletConnected] = useState(false);
@@ -92,7 +90,10 @@ const ConnectWallet = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <p className="text-green-500 text-center mt-4 hover:cursor-pointer" title={walletAddress}>
+          <p
+            className="text-green-500 text-center mt-4 hover:cursor-pointer"
+            title={walletAddress}
+          >
             {getAbbreviatedAddress(walletAddress)}
           </p>
           <button
