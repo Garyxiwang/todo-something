@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import Link from "next/link";
 
 declare global {
   interface Window {
@@ -44,7 +45,7 @@ const ConnectWallet = () => {
         await window.ethereum.request({ method: "eth_requestAccounts" });
         setWalletAddress("");
         setIsWalletConnected(false);
-        setConnectionStatus("已成功断开钱包连接");
+        setConnectionStatus("");
       } catch (error) {
         console.error("断开钱包连接失败", error);
         setConnectionStatus("断开钱包连接失败，请检查钱包设置或网络连接");
@@ -75,6 +76,7 @@ const ConnectWallet = () => {
     const end = address.slice(-4);
     return `${start}...${end}`;
   };
+
   return (
     <>
       {!isLoading && (
@@ -89,19 +91,17 @@ const ConnectWallet = () => {
           )}
         </div>
       ) : (
-        <div className="flex flex-col items-center">
-          <p
-            className="text-green-500 text-center mt-4 hover:cursor-pointer"
-            title={walletAddress}
-          >
-            {getAbbreviatedAddress(walletAddress)}
-          </p>
+        <div className="flex flex-row justify-start">
           <button
-            className="bg-red-500 text-white px-2 py-2 rounded hover:bg-red-600 mt-2"
+            className="hover:text-gray-300 mr-8"
+            title={walletAddress}
             onClick={handleWalletDisconnect}
           >
-            断开钱包连接
+            {getAbbreviatedAddress(walletAddress)}
           </button>
+          <Link href="/list" className="hover:text-gray-300">
+            我的任务
+          </Link>
         </div>
       )}
     </>

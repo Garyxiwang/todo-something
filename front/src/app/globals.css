@@ -20,6 +20,26 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+input {
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  resize: none;
+  border: none;
+  box-sizing: border-box;
+}
+
+textarea {
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  resize: none;
+  border: none;
+  box-sizing: border-box;
+}
+
 
 .marquee-wrapper {
   overflow: hidden;
