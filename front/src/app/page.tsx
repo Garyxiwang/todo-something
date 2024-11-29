@@ -1,5 +1,6 @@
 export default function Home() {
   return (
+   
     <div className="flex-grow p-4 bg-gray-800">
       <div className="font-mono md:text-[100px] text-[52px] leading-[42px] tracking-[-1px]  md:tracking-[-5px] md:leading-[120px] text-white flex  flex-row justify-center">
         TODO SOMETHING
