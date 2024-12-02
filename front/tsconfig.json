@@ -19,8 +19,9 @@
       }
     ],
     "paths": {
-      "@/components/*": ["./components/*"],
-      "@/common/utils/*": ["./common/utils/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/utils/*": ["./common/utils/*"],
+      "@/hooks/*": ["./common/hooks/*"],
       "@/src/*": ["./src/*"]
     }
   },

@@ -1,20 +1,20 @@
-import { post, del, put } from "@/common/utils/request";
+import { post, del, put } from "@/utils/request";
 
 const todoService = {
   addTodo: async (obj: object) => {
-    return await post("/api/todo/create", obj);
+    return await post("http://localhost:3100/api/todo/create", obj);
   },
   del: async (id: number) => {
-    return await del("/api/todo/del", id);
+    return await del("http://localhost:3100/api/todo/delete", { id: id });
   },
   edit: async (obj: object) => {
-    return await put("/api/todo/edit", obj);
+    return await put("http://localhost:3100/api/todo/edit", obj);
   },
   queryList: async () => {
     return await post("http://localhost:3100/api/todo/findAll");
   },
-  detail: async (obj: object) => {
-    return await post("/api/todo/detail", obj);
+  detail: async (id: number) => {
+    return await post("http://localhost:3100/api/todo/detail", { id: id });
   },
 };
 

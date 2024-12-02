@@ -49,11 +49,11 @@ export const post = async (url, data = {}, config = {}) => {
 };
 
 export const put = async (url, data) => {
-  return await service.put("PUT", url, data);
+  return await service.put(url, { ...data });
 };
 
 export const del = async (url, data) => {
-  return await service.delete("DELETE", url, data);
+  return await service.delete(url, { data });
 };
 
 // export default request;

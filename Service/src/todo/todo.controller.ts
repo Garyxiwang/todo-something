@@ -17,6 +17,7 @@ export class TodoController {
 
   @Put("edit")
   async edit(@Body() body: Object) {
+    console.log('edit', body)
     return await this.todoService.edit(body);
   }
 

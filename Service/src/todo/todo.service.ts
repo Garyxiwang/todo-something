@@ -33,27 +33,40 @@ export class TodoService {
     });
     return {
       data: newList,
-      message: "",
+      message: "查询成功",
       code: 200,
     };
   }
   findDetail(id): Object {
     const foundObj = list.find((item: { id; title; detail }) => item.id === id);
-    return foundObj;
+    console.log("findDetail", foundObj);
+    return {
+      data: foundObj,
+      message: "查询详情成功",
+      code: 200,
+    };
   }
   /**
    * 新增
    * @returns
    */
   create(obj): object {
+    console.log("create", obj);
+    const maxId = Math.max(...list.map((item: any) => item.id));
+    obj.id = maxId + 1;
     list.push(obj);
-    return obj;
+    return {
+      data: obj,
+      message: "新增成功",
+      code: 200,
+    };
   }
   /**
    * 编辑
    * @returns
    */
   edit(obj): object {
+    console.log("obj", obj);
     const updatedList = list.map((item: { id; title; detail }) => {
       if (item.id === obj.id) {
         // 这里可以根据你的需求修改具体要更新的属性值
@@ -66,7 +79,11 @@ export class TodoService {
       return item;
     });
     list = updatedList;
-    return obj;
+    return {
+      data: obj,
+      message: "修改成功",
+      code: 200,
+    };
   }
 
   /**
@@ -78,6 +95,11 @@ export class TodoService {
       (item: { id; title; detail }) => item.id !== id
     );
     list = newList;
-    return { id: id };
+
+    return {
+      data: { id: id },
+      message: "删除成功",
+      code: 200,
+    };
   }
 }

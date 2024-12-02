@@ -1,9 +1,13 @@
-
 "use client";
 
 import React, { useState } from "react";
+import todoService from "./service";
 
-export default function AddTodo() {
+interface AddTodoProps {
+  onRefresh: () => void;
+}
+
+export default function AddTodo({ onRefresh }: AddTodoProps) {
   const [inputValue, setInputValue] = useState("");
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -11,7 +15,10 @@ export default function AddTodo() {
       console.log("用户按下了回车键，输入的值为：", inputValue);
       setInputValue("");
       // 例如，你可以在这里发送数据到服务器、执行搜索操作等
-      
+      todoService.addTodo({ title: inputValue, detail: "" }).then((res) => {
+        console.log("data", res);
+        onRefresh();
+      });
     }
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
