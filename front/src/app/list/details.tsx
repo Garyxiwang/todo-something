@@ -32,7 +32,6 @@ export default function Details({ todo, onRefresh }: DetailsProps) {
       title: debouncedValue,
       detail: debouncedDetail,
     };
-    console.log("newTodo", newTodo);
     todoService.edit(newTodo);
     onRefresh();
   };
