@@ -1,4 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import { ethers } from "ethers";
+import * as todoListAbi from "../contractsABI/TodoList.json";
 
 let list: Array<Object> = [
   {
@@ -19,8 +21,55 @@ let list: Array<Object> = [
   },
 ];
 
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    ethereum: any;
+  }
+}
+
 @Injectable()
 export class TodoService {
+  private provider: ethers.JsonRpcProvider;
+  private signer: ethers.Wallet;
+  private contract: ethers.Contract;
+
+  constructor() {
+    // 1. 配置本地 Hardhat 网络提供者
+    const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545"); // 连接本地网络
+    this.signer = new ethers.Wallet(
+      "0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd",
+      provider
+    );
+
+    // 2. 合约地址（从 Hardhat 部署日志获取）
+    const contractAddress = "0xbDA5747bFD65F08deb54cb465eB87D40e51B197E";
+
+    // 3. 创建合约实例
+    this.contract = new ethers.Contract(
+      contractAddress,
+      todoListAbi.abi,
+      this.signer
+    );
+  }
+  /**
+   * 合约中创建
+   * @param title
+   * @param detail
+   * @param date
+   */
+  async createTodoItem(title: string, detail: string, date: number) {
+    try {
+      const tx = await this.contract.createTodoItem(title, detail, date);
+      await tx.wait(); // 等待交易完成
+      console.log(`Transaction hash: ${tx.hash}`);
+      return tx.hash;
+    } catch (error) {
+      console.error("Error creating todo item:", error);
+      throw new Error(error.message);
+    }
+  }
+
   /**
    * 查询
    * @returns

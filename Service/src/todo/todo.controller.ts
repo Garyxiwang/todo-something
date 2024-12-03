@@ -30,4 +30,14 @@ export class TodoController {
   async detail(@Body("id") id: number) {
     return await this.todoService.findDetail(id);
   }
+
+
+  @Post('createTodoItem')
+  async createTodo(
+    @Body('title') title: string,
+    @Body('detail') detail: string,
+    @Body('date') date: number,
+  ) {
+    return await this.todoService.createTodoItem(title, detail, date);
+  }
 }

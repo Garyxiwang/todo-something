@@ -16,6 +16,8 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "resolveJsonModule": true, // 允许导入 JSON 文件
+    "esModuleInterop": true,  // 兼容 CommonJS 和 ES 模块
   }
 }
