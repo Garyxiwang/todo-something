@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export default function Geometry() {
-  const containerRef = useRef(null); // 用于引用 DOM 容器
+  const containerRef = useRef<HTMLDivElement>(null);// 用于引用 DOM 容器
 
   useEffect(() => {
     if (containerRef.current) {
