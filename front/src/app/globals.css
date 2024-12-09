@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('../../assets/marquee.css');
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -38,55 +40,4 @@ textarea {
   resize: none;
   border: none;
   box-sizing: border-box;
-}
-
-
-.marquee-wrapper {
-  overflow: hidden;
-  position: relative;
-  white-space: nowrap;
-}
-
-.marquee-text {
-  position: relative;
-  left: 0;
-  animation: marqueeWithTransform 10s linear infinite;
-  max-width: 260%;
-  transform-origin: left center; /* 设置变换原点为文本左侧中心位置 */
-}
-
-
-.marquee-text-right {
-  position: relative;
-  right: 0;
-  animation: marqueeWithTransformRight 20s linear infinite;
-  transform-origin: right center; /* 设置变换原点为文本右侧中心位置 */
-}
-
-@keyframes marqueeWithTransform {
-  0% {
-      left: 100%;
-      transform: translateX(-100%) skewX(-10deg); /* 初始位置及倾斜效果 */
-  }
-  50% {
-      transform: translateX(-50%) scaleX(1.1); /* 滚动过程中的拉伸效果 */
-  }
-  100% {
-      left: -100%;
-      transform: translateX(0) skewX(10deg); /* 结束位置及倾斜效果 */
-  }
-}
-
-@keyframes marqueeWithTransformRight {
-  0% {
-      right: 100%;
-      transform: translateX(100%) skewX(10deg); /* 初始位置及倾斜效果 */
-  }
-  50% {
-      transform: translateX(50%) scaleX(1.1); /* 滚动过程中的拉伸效果 */
-  }
-  100% {
-      right: -100%;
-      transform: translateX(-100%) skewX(-10deg); /* 结束位置及倾斜效果 */
-  }
 }

@@ -1,0 +1,32 @@
+@keyframes marquee {
+  0% {
+    transform: translateX(100vw);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee__container{
+  width: 100%;
+  height: 30px;
+  text-align: left;
+  line-height: 30px;
+  overflow: hidden;
+}
+.marquee {
+  white-space: nowrap;
+  display: inline-block;
+  animation: marquee 20s linear 0s infinite;
+}
+
+.marquee ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.marquee li {
+  display: inline-block;
+  padding: 0 1rem; /* Adjust padding as needed */
+}
